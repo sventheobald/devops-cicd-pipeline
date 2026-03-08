@@ -1,0 +1,31 @@
+yaml
+name: CI Pipeline
+
+on: push
+branches: [ main ]
+pull_request:
+  branches: [ main ]
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+
+        - name: Java Umgebung einrichten
+          uses: actions/setup-java@v3
+          with:
+            java-version: '17'
+            distribution: 'temurin'
+
+        - name: Anwendung bauen
+          run: echo "Baue die Anwendung..."
+
+        - name: Tests starten
+          run: echo "Führe Tests aus..."
+
+        - name: Docker Image erstellen
+          run: echo "Docker Image build wird simuliert..."
+
