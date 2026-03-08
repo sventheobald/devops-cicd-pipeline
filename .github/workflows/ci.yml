@@ -9,9 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Repository auschecken
         uses: actions/checkout@v3
 
       - name: Java Umgebung einrichten
@@ -21,10 +20,24 @@ jobs:
           distribution: 'temurin'
 
       - name: Anwendung bauen
-        run: echo "Baue die Anwendung..."
+        run: echo "Baue Anwendung..."
 
-      - name: Tests starten
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Tests ausführen
         run: echo "Führe Tests aus..."
 
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
       - name: Docker Image erstellen
-        run: echo "Docker Image build wird simuliert..."
+        run: echo "Docker Image wird gebaut..."
