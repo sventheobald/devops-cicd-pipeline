@@ -1,16 +1,18 @@
 yaml
+
 name: CI Pipeline
 
-on: push
-branches: [ main ]
-pull_request:
-  branches: [ main ]
+on:
+  push
+   branches: [ main ]
+  pull_request:
+   branches: [ main ]
 
-  jobs:
-    build:
-      runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-      steps:
+    steps:
         - name: Checkout Repository
           uses: actions/checkout@v3
 
