@@ -32,9 +32,19 @@ jobs:
       - name: Tests ausführen
         run: echo "Führe Tests aus..."
 
-  docker:
+  freeze-check:
     runs-on: ubuntu-latest
     needs: test
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Business Freeze prüfen
+        run: bash scripts/check-freeze.sh
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: freeze-check
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v3
